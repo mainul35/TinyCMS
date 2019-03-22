@@ -11,6 +11,11 @@ namespace TinyCMS
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/js").Include(
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/bootstrap.js"
+                        ));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
