@@ -1,0 +1,70 @@
+﻿@model IEnumerable<TinyCMS.Models.ViewModels.Pages.PageViewModel>
+
+@{
+    ViewBag.Title = "Pages";
+    Layout = Request.IsAjaxRequest() ? null : "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Pages</h2>
+
+<p>
+    @Html.ActionLink("Add New Page", "addPage")
+</p>
+
+@if (!Model.Any())
+{
+    <h1 class="text-center">There are no pages.</h1>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Slug
+            </th>
+            <th>
+                Sidebar
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Slug)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HasSidebar)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "editPage", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "viewDetails", new { id = item.Id })
+                    @if (item.Slug != "home")
+                    {
+                        @("| ") @Html.ActionLink("Delete", "deletePage", new { id = item.Id }, new { @class="delete" })
+                    }
+                   
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+@section Scripts {
+    <script>
+        $(function () {
+            $("a.delete").click(function () {
+                if (!confirm("Confirm page deletion")) return false;
+            })
+        })
+    </script>
+    
+    }

@@ -13,6 +13,7 @@ namespace TinyCMS
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
                         "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/popper.js",
                         "~/Scripts/bootstrap.js"
                         ));
 
@@ -29,8 +30,7 @@ namespace TinyCMS
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap.css"));
         }
     }
 }
